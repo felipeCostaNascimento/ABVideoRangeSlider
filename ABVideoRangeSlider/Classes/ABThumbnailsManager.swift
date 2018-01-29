@@ -62,7 +62,11 @@ class ABThumbnailsManager: NSObject {
         
         var thumbnails = [UIImage]()
         var offset: Float64 = 0
-        let imagesCount = self.thumbnailCount(inView: view)
+        var imagesCount = 0
+        
+        DispatchQueue.main.async {
+            imagesCount = self.thumbnailCount(inView: view)
+        }
         
         for i in 0..<imagesCount{
             let thumbnail = ABVideoHelper.thumbnailFromVideo(videoUrl: videoURL,
